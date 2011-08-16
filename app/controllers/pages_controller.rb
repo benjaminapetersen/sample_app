@@ -10,9 +10,15 @@ class PagesController < ApplicationController
 			# - run code in "home" action
 			# - render view corresponding to the action.
 			# - since we have no code, Rails goes straight to view.
+		@title = "Home"
   end
 
   def contact
+		@title = "Contact"
   end
+
+	def about
+		@title = "About"
+	end
 
 end
