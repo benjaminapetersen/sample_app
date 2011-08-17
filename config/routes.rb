@@ -2,13 +2,18 @@
 # http://guides.rubyonrails.org/routing.html
 
 SampleApp::Application.routes.draw do
+  get "users/new"
+
+	match '/signup', :to => 'users#new' #signup_path
+
   # DEPRACATED
 	#get "pages/home"
   #get "pages/contact"
 	#get "pages/about"
 	#get "pages/help"
-	match '/contact', :to => 'pages#contact'
-	match '/about', :to => 'pages#about'
+	
+	match '/contact', :to => 'pages#contact' #contact_path
+	match '/about', :to => 'pages#about' #about_path
 	match '/help', :to => 'pages#help'
 	root :to => 'pages#home'
 		#match creates named routes for use in controllers and views!
