@@ -10,6 +10,12 @@ describe PagesController do
 	render_views	
 
 
+	# Base title
+	before(:each) do
+		@base_title = "Ruby on Rails Tutorial > Sample App | "
+	end
+
+
 
 	# RSpec does not care what you put in the first line,
 	# describe literally lets you describe... so "GET 'home'" is 
@@ -24,12 +30,12 @@ describe PagesController do
 			get 'home'
 			# have_selector can be a string, or any substring in the given element
       response.should have_selector("title",
-					 :content => "Ruby on Rails Tutorial Sample App | Home")
+					 :content => @base_title +  "Home")
     end
   end
 
 
-
+	# Test for Contact page
   describe "GET 'contact'" do
     it "should be successful" do
       get 'contact'
@@ -39,13 +45,13 @@ describe PagesController do
 		it "should have the right title" do
 			get 'contact'
 			response.should have_selector("title",
-				:content => "Contact")
+				:content => @base_title +  "Contact")
 		end	
   end
 
 
 
-	# the failing test we write
+	# Test for About page
 	describe "GET 'about'" do
 		it "should be successful" do
 			get 'about'
@@ -55,7 +61,23 @@ describe PagesController do
 		it "should have the right title" do
 			get 'about'
 			response.should have_selector("title",
-				:content => "About")
+				:content => @base_title + "About")
+		end
+	end
+
+
+
+	# Test for Help page
+	describe "GET 'help'" do
+		it "should be successful" do
+			get 'help'
+			response.should be_successful
+		end
+	
+		it "should have the right title" do
+			get 'help'
+			response.should have_selector("title",
+				:content => @base_title + "Help")
 		end
 	end
 end
